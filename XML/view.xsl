@@ -149,7 +149,7 @@
 
     <div class="other_studies">
       <xsl:for-each select="form/studies/other_study">
-        <table class="half_table read_naked_choke">
+        <table class="half_table read_naked_choke tb">
           <tr class="bb">
             <th class="is">Iné štúdium: VŠ, fakulta: </th>
             <td><xsl:value-of select="faculty"/></td>
@@ -283,7 +283,7 @@
             <td><xsl:value-of select="date/start"/> / <xsl:value-of select="date/end"/></td>
           </tr>
         </table>
-        <table class="half_table akad">
+        <table class="half_table akad tb">
           <tr class="bb">
             <th colspan="2">Zápisy do akademických rokov</th>
           </tr>

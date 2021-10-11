@@ -26,6 +26,7 @@ td {
 
 .other_studies {
   border: 1px black solid;
+  border-top: 1px black solid;
   font-size: 0;
 }
 
@@ -34,7 +35,7 @@ td {
 }
 
 .is {
-  padding: 10px 0px;
+  padding: 11.5px 0px;
 }
 
 .main {
@@ -49,6 +50,7 @@ td {
 .other_studies tbody {
   display: table;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .other_studies tr {
@@ -57,6 +59,10 @@ td {
 
 .bb {
   border-bottom: 1px black solid;
+}
+
+.tb {
+  border-top: 2px black solid;
 }
 
 .akad {
