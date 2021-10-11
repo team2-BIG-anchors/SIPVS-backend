@@ -1,7 +1,6 @@
 <html>
    <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" type="text/css" href="style.css"/>
    </head>
    <body>
       <h1>Nazov</h1>
@@ -35,23 +34,50 @@
             </tr>
             <tr>
                <th>Stupeň štúdia: </th>
-               <td><input type="checkbox" name="bachelor" disabled checked="true"><label for="bachelor">bakalársky</label></td>
+               <td>
+                  <input type="checkbox"
+                         name="bachelor"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="bachelor">bakalársky</label>
+               </td>
             </tr>
             <tr>
-               <th></th>
-               <td><input type="checkbox" name="master" disabled><label for="master">inžiniersky/magisterský</label></td>
+               <th/>
+               <td>
+                  <input type="checkbox" name="master" disabled="disabled"/>
+                  <label for="master">inžiniersky/magisterský</label>
+               </td>
             </tr>
             <tr>
-               <th></th>
-               <td><input type="checkbox" name="doctoral" disabled><label for="doctoral">doktorandský</label></td>
+               <th/>
+               <td>
+                  <input type="checkbox" name="doctoral" disabled="disabled"/>
+                  <label for="doctoral">doktorandský</label>
+               </td>
             </tr>
             <tr>
                <th>Forma: </th>
-               <td><input type="checkbox" name="daily" disabled checked="true"><label for="daily">denná (</label><input type="checkbox" name="present" disabled checked="true"><label for="present">prezenčná, </label><input type="checkbox" name="distant" disabled><label for="distant">dištančná, </label><input type="checkbox" name="combined" disabled><label for="combined">kombinovaná)</label></td>
+               <td>
+                  <input type="checkbox" name="daily" disabled="disabled" checked="true"/>
+                  <label for="daily">denná (</label>
+                  <input type="checkbox"
+                         name="present"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="present">prezenčná, </label>
+                  <input type="checkbox" name="distant" disabled="disabled"/>
+                  <label for="distant">dištančná, </label>
+                  <input type="checkbox" name="combined" disabled="disabled"/>
+                  <label for="combined">kombinovaná)</label>
+               </td>
             </tr>
             <tr>
-               <th></th>
-               <td><input type="checkbox" name="external" disabled><label for="external">externá</label></td>
+               <th/>
+               <td>
+                  <input type="checkbox" name="external" disabled="disabled"/>
+                  <label for="external">externá</label>
+               </td>
             </tr>
             <tr>
                <th>Študijný program: </th>
@@ -67,27 +93,148 @@
             </tr>
             <tr>
                <th>Stupeň štúdia: </th>
-               <td><input type="checkbox" name="other_bachelor" disabled checked="true"><label for="other_bachelor">bakalársky</label></td>
+               <td>
+                  <input type="checkbox"
+                         name="other_bachelor"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="other_bachelor">bakalársky</label>
+               </td>
             </tr>
             <tr>
-               <th></th>
-               <td><input type="checkbox" name="other_master" disabled><label for="other_master">inžiniersky/magisterský</label></td>
+               <th/>
+               <td>
+                  <input type="checkbox" name="other_master" disabled="disabled"/>
+                  <label for="other_master">inžiniersky/magisterský</label>
+               </td>
             </tr>
             <tr>
-               <th></th>
-               <td><input type="checkbox" name="other_combined" disabled><label for="other_combined">spojený 1. a 2. stupeň</label></td>
+               <th/>
+               <td>
+                  <input type="checkbox" name="other_combined" disabled="disabled"/>
+                  <label for="other_combined">spojený 1. a 2. stupeň</label>
+               </td>
             </tr>
             <tr class="bb">
-               <th></th>
-               <td><input type="checkbox" name="other_doctoral" disabled><label for="other_doctoral">doktorandský</label></td>
+               <th/>
+               <td>
+                  <input type="checkbox" name="other_doctoral" disabled="disabled"/>
+                  <label for="other_doctoral">doktorandský</label>
+               </td>
             </tr>
             <tr>
                <th>Forma: </th>
-               <td><input type="checkbox" name="other_daily" disabled checked="true"><label for="other_daily">denná (</label><input type="checkbox" name="other_present" disabled checked="true"><label for="other_present">prezenčná, </label><input type="checkbox" name="other_distant" disabled><label for="other_distant">dištančná, </label><input type="checkbox" name="other_combined" disabled><label for="other_combined">kombinovaná)</label></td>
+               <td>
+                  <input type="checkbox"
+                         name="other_daily"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="other_daily">denná (</label>
+                  <input type="checkbox"
+                         name="other_present"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="other_present">prezenčná, </label>
+                  <input type="checkbox" name="other_distant" disabled="disabled"/>
+                  <label for="other_distant">dištančná, </label>
+                  <input type="checkbox" name="other_combined" disabled="disabled"/>
+                  <label for="other_combined">kombinovaná)</label>
+               </td>
             </tr>
             <tr class="bb">
-               <th></th>
-               <td><input type="checkbox" name="other_external" disabled><label for="other_external">externá</label></td>
+               <th/>
+               <td>
+                  <input type="checkbox" name="other_external" disabled="disabled"/>
+                  <label for="other_external">externá</label>
+               </td>
+            </tr>
+            <tr class="bb">
+               <th>Študijný program: </th>
+               <td>cecky</td>
+            </tr>
+            <tr>
+               <th>Dátum začiatku a konca štúdia: </th>
+               <td>2010-10-15 / 2015-10-20</td>
+            </tr>
+         </table>
+         <table class="half_table akad">
+            <tr class="bb">
+               <th colspan="2">Zápisy do akademických rokov</th>
+            </tr>
+            <tr class="bb">
+               <th>akad. rok</th>
+               <th class="lb">platil/a - neplatil/a</th>
+            </tr>
+            <tr class="nb">
+               <td>2010 / 2015</td>
+               <td class="lb">platena</td>
+            </tr>
+            <tr class="nb">
+               <td>2010 / 2015</td>
+               <td class="lb">neplatena</td>
+            </tr>
+         </table>
+         <table class="half_table read_naked_choke">
+            <tr class="bb">
+               <th class="is">Iné štúdium: VŠ, fakulta: </th>
+               <td>moja rit</td>
+            </tr>
+            <tr>
+               <th>Stupeň štúdia: </th>
+               <td>
+                  <input type="checkbox" name="other_bachelor" disabled="disabled"/>
+                  <label for="other_bachelor">bakalársky</label>
+               </td>
+            </tr>
+            <tr>
+               <th/>
+               <td>
+                  <input type="checkbox" name="other_master" disabled="disabled"/>
+                  <label for="other_master">inžiniersky/magisterský</label>
+               </td>
+            </tr>
+            <tr>
+               <th/>
+               <td>
+                  <input type="checkbox"
+                         name="other_combined"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="other_combined">spojený 1. a 2. stupeň</label>
+               </td>
+            </tr>
+            <tr class="bb">
+               <th/>
+               <td>
+                  <input type="checkbox" name="other_doctoral" disabled="disabled"/>
+                  <label for="other_doctoral">doktorandský</label>
+               </td>
+            </tr>
+            <tr>
+               <th>Forma: </th>
+               <td>
+                  <input type="checkbox"
+                         name="other_daily"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="other_daily">denná (</label>
+                  <input type="checkbox" name="other_present" disabled="disabled"/>
+                  <label for="other_present">prezenčná, </label>
+                  <input type="checkbox"
+                         name="other_distant"
+                         disabled="disabled"
+                         checked="true"/>
+                  <label for="other_distant">dištančná, </label>
+                  <input type="checkbox" name="other_combined" disabled="disabled"/>
+                  <label for="other_combined">kombinovaná)</label>
+               </td>
+            </tr>
+            <tr class="bb">
+               <th/>
+               <td>
+                  <input type="checkbox" name="other_external" disabled="disabled"/>
+                  <label for="other_external">externá</label>
+               </td>
             </tr>
             <tr class="bb">
                <th>Študijný program: </th>

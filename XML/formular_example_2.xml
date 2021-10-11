@@ -75,9 +75,9 @@
     <other_study study_id="2">
       <faculty>moja rit</faculty>
       <degree>
-        <bachelor>true</bachelor>
+        <bachelor>false</bachelor>
         <master>false</master>
-        <combined>false</combined>
+        <combined>true</combined>
         <doctoral>false</doctoral>
       </degree>
       <type>
@@ -86,8 +86,8 @@
           <external>false</external>
         </main>
         <optional>
-          <present>true</present>
-          <distant>false</distant>
+          <present>false</present>
+          <distant>true</distant>
           <combined>false</combined>
         </optional>
       </type>
