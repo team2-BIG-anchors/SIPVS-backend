@@ -21,20 +21,18 @@ namespace SIPVS_backend.Handlers
 
         public async Task<FileStream> createXML() { 
             string fileName = "formular.xml";
-            string localFilePath = @"C:\Users\william.brach\Developer\SIPVS-backend\XML\formular.xml";
+            string localFilePath = Path.GetFullPath("../XML/" + fileName);
             var stream = File.OpenRead(localFilePath);
+            //return new FileContentResult(stream, "application/xml");
             return stream;
-        
         }
 
         public async Task<FileStream> createHTML()
         {
             string fileName = "formular.xml";
-            string localFilePath = @"C:\Users\william.brach\Developer\SIPVS-backend\XML\formular.xml";
+            string localFilePath = Path.GetFullPath("../XML/" + fileName);
             var stream = File.OpenRead(localFilePath);
             return stream;
-
-
         }
 
     }

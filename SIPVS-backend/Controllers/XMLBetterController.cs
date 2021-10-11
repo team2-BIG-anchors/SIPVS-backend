@@ -37,8 +37,6 @@ namespace SIPVS_backend.Controllers
             var stream = await handler.createXML();
             //if (String.IsNullOrEmpty(id))
             //    return Request.CreateResponse(HttpStatusCode.BadRequest);
-
-
             return new FileStreamResult(stream, "application/octet-stream");
 
         }
