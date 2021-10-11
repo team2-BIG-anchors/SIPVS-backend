@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="view.xsl"?>
+
+<form>
+  <title>Nazov</title>
+  <student>
+    <name_surname_title>Jozef Palacinka</name_surname_title>
+    <id>5</id>
+    <birth>2000-01-20</birth>
+    <birthplace>picovina</birthplace>
+    <address>kokotina</address>
+  </student>
+  <study>
+    <faculty>moj tatko</faculty>
+    <degree>
+      <bachelor>true</bachelor>
+      <master>false</master>
+      <doctoral>false</doctoral>
+    </degree>
+    <type>
+      <main>
+        <daily>true</daily>
+        <external>false</external>
+      </main>
+      <optional>
+        <present>true</present>
+        <distant>false</distant>
+        <combined>false</combined>
+      </optional>
+    </type>
+    <field_of_study>tvoja mamka</field_of_study>
+  </study>
+  <studies>
+    <other_study>
+      <faculty>moja rit</faculty>
+      <degree>
+        <bachelor>true</bachelor>
+        <master>false</master>
+        <doctoral>false</doctoral>
+      </degree>
+      <type>
+        <main>
+          <daily>true</daily>
+          <external>false</external>
+        </main>
+        <optional>
+          <present>true</present>
+          <distant>false</distant>
+          <combined>false</combined>
+        </optional>
+      </type>
+      <field_of_study>cecky</field_of_study>
+      <date>
+        <start>2010-10-15</start>
+        <end>2015-10-20</end>
+      </date>
+      <sign_ups>
+        <sign_up>
+          <year>
+            <start>2010</start>
+            <end>2015</end>
+          </year>
+          <paid>platena</paid>
+        </sign_up>
+        <sign_up>
+          <year>
+            <start>2010</start>
+            <end>2015</end>
+          </year>
+          <paid>neplatena</paid>
+        </sign_up>
+      </sign_ups>
+    </other_study>
+  </studies>
+</form>

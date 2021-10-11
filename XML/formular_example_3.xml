@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- testovanie test.xsl -->
+
+<form>
+  <study>
+    <degree>
+      <bachelor>true</bachelor>
+      <master></master>
+      <doctoral></doctoral>
+    </degree>
+  </study>
+</form>

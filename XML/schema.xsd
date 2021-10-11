@@ -23,6 +23,7 @@
                   <xs:sequence>
                     <xs:element name="bachelor" type="xs:boolean"/>
                     <xs:element name="master" type="xs:boolean"/>
+                    <xs:element name="combined" type="xs:boolean"/>
                     <xs:element name="doctoral" type="xs:boolean"/>
                   </xs:sequence>
                 </xs:complexType>
