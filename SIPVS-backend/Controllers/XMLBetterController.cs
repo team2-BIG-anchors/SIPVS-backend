@@ -4,52 +4,74 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SIPVS_backend.Handlers;
 using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace SIPVS_backend.Controllers
 {
+
     [Route("api/xml2")]
     [ApiController]
-    public class XMLBetterController : ApiController
+    public class XMLBetterController : ControllerBase
+    
     {
 
         // GET: api/<XMLController>
         [Route("isvalid")]
         [HttpGet]
-        public bool isXMLValid()
+        public async Task<string> isXMLValid(List<IFormFile> files)
         {
+
+            IFormFile file = files.First();
+            string filePath = Path.Combine("../DATA/", file.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
             XMLHandler handler = new XMLHandler();
-            bool isValid = handler.isXMLValid();
-            return true;
+            string isValid = handler.isXMLValid(filePath);
+            return isValid;
+                
+            
+
         }
+
 
         [Route("savexml")]
         [HttpGet]
-        public async Task<FileStreamResult> saveXML()
+        public FileContentResult saveXML()
         {
             XMLHandler handler = new XMLHandler();
-            var stream = await handler.createXML();
-            //if (String.IsNullOrEmpty(id))
-            //    return Request.CreateResponse(HttpStatusCode.BadRequest);
-            return new FileStreamResult(stream, "application/octet-stream");
-
+            FileContentResult stream = handler.createXML();
+            return stream;
         }
+
 
         [Route("visualize")]
-        [HttpGet]
-        public async Task<FileStreamResult> visualizeXML()
+        [HttpPost]
+        public async Task<FileContentResult> visualizeXML(List<IFormFile> files)
         {
-            XMLHandler handler = new XMLHandler();
-            var stream = await handler.createHTML();
-            return new FileStreamResult(stream, "application/octet-stream");
 
-        }
+            IFormFile file = files.First();
+            string filePath = Path.Combine("../DATA/", file.FileName);
+            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            XMLHandler handler = new XMLHandler();
+            FileContentResult stream = handler.createHTML(filePath);
+            return stream;
+
 
     }
+
+}
 }
