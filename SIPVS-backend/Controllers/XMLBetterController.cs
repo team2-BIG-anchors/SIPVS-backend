@@ -63,6 +63,18 @@ namespace SIPVS_backend.Controllers
                 //need to somehow close the file???
                 fileStream.Close();
             }
+
+
+            string newValue = string.Empty;
+            XmlDocument xmlDoc = new XmlDocument();
+
+            xmlDoc.Load(filePath);
+
+            XmlNode node = xmlDoc.SelectSingleNode("Root/Node/Element");
+            node.Attributes[0].Value = newValue;
+
+            xmlDoc.Save(filePath);
+
             XMLHandler handler = new XMLHandler();
             string isValid = handler.isXMLValid(filePath);
             return isValid;
