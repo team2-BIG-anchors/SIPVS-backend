@@ -1,0 +1,7 @@
+Pri validate a visualize sa nejakym sposobom nezatvaraju tie ukladane subory a potom sa nedaju pocas behu servera otvorit 2x - treba opravit
+Visualize dava zbytocny vypis do konzoly HTMLka
+Treba updatnut XSD a XSLT tak aby ich korektne volal server (spravne cesty, neviem ci to uz je spravene ale pochybujem)
+XMLko ma podla zadania mat nejaky atribut v elemente, nase nema ziadne tak mozno daco vymysliet
+
+Potom by bolo vhodne vyskusat ci vsetko ide ako ma, ako ano tak hotovo
+
