@@ -76,7 +76,7 @@ namespace SIPVS_backend.Handlers
         public FileContentResult createHTML(string xmlPath)
         {
 
-            string xsltPath = "../XML/ranajky.xslt";
+            string xsltPath = "../XML/view.xslt";
 
             XslCompiledTransform transform = new XslCompiledTransform();
 
@@ -85,7 +85,7 @@ namespace SIPVS_backend.Handlers
             StringWriter results = new StringWriter();
             transform.Transform(xmlPath, null, results);
 
-            Console.WriteLine(results.ToString());
+            //Console.WriteLine(results.ToString());
             string html_name = "HTML.html";
             using (FileStream fs = new FileStream("../DATA/" + html_name, FileMode.Create))
             {
