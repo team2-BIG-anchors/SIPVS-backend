@@ -76,7 +76,7 @@ namespace SIPVS_backend.Handlers
         public FileContentResult createHTML(string xmlPath)
         {
 
-            string xsltPath = "../XML/view.xslt";
+            string xsltPath = "../XML/view.xsl";
 
             XslCompiledTransform transform = new XslCompiledTransform();
 

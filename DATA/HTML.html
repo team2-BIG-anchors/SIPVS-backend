@@ -1,7 +1,82 @@
 ﻿<html>
   <head>
     <META http-equiv="Content-Type" content="text/html; charset=utf-16">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+      body {
+        font-family: Sans-Serif, Helvetica, Arial;
+      }
+
+      h1 {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .half_table {
+        width: 50%;
+        display: inline-block;
+        text-align: left;
+        vertical-align:top;
+        border-collapse: collapse;
+      }
+
+      th {
+        font-weight: normal;
+      }
+
+      td {
+        font-weight: 600;
+      }
+
+      .other_studies {
+        border: 1px black solid;
+        border-top: 1px black solid;
+        font-size: 0;
+      }
+
+      .other_studies .lb {
+        border-left: 1px black solid;
+      }
+
+      .is {
+        padding: 11.5px 0px;
+      }
+
+      .main {
+        font-size: 0;
+        margin-bottom: 20px;
+      }
+
+      .read_naked_choke {
+        border-right: 1px black solid;
+      }
+
+      .other_studies tbody {
+        display: table;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .other_studies tr {
+        width: 100%;
+      }
+
+      .bb {
+        border-bottom: 1px black solid;
+      }
+
+      .tb {
+        border-top: 2px black solid;
+      }
+
+      .akad {
+        text-align: center;
+      }
+
+      .akad th {
+        width: 50%;
+      }
+    </style>
   </head>
   <body>
     <h1>ČESTNÉ VYHLÁSENIE študenta o štúdiu na vysokých školách</h1>
@@ -9,29 +84,29 @@
       <table class="half_table">
         <tr>
           <th>Titul, meno a priezvisko: </th>
-          <td>kys</td>
+          <td>Bc. Juraj Bedej</td>
         </tr>
         <tr>
           <th>ID: </th>
-          <td>2</td>
+          <td>5</td>
         </tr>
         <tr>
           <th>Dátum narodenia: </th>
-          <td>2021-1-1</td>
+          <td>2014-1-1</td>
         </tr>
         <tr>
           <th>Miesto narodenia: </th>
-          <td>kys</td>
+          <td>Bratislava</td>
         </tr>
         <tr>
           <th>Trvalé bydlisko: </th>
-          <td>kys</td>
+          <td>Pri starej pracharni 2, Bratislava</td>
         </tr>
       </table>
       <table class="half_table">
         <tr>
           <th>Fakulta/ústav: </th>
-          <td>kys</td>
+          <td>FIIT UISI</td>
         </tr>
         <tr>
           <th>Stupeň štúdia: </th>
@@ -39,11 +114,11 @@
         </tr>
         <tr>
           <th></th>
-          <td><input type="checkbox" name="master" disabled><label for="master">inžiniersky/magisterský</label></td>
+          <td><input type="checkbox" name="master" disabled checked><label for="master">inžiniersky/magisterský</label></td>
         </tr>
         <tr>
           <th></th>
-          <td><input type="checkbox" name="doctoral" disabled checked><label for="doctoral">doktorandský</label></td>
+          <td><input type="checkbox" name="doctoral" disabled><label for="doctoral">doktorandský</label></td>
         </tr>
         <tr>
           <th>Forma: </th>
@@ -55,7 +130,7 @@
         </tr>
         <tr>
           <th>Študijný program: </th>
-          <td>kys</td>
+          <td>ISS</td>
         </tr>
       </table>
     </div>
@@ -63,7 +138,7 @@
       <table class="half_table read_naked_choke tb">
         <tr class="bb">
           <th class="is">Iné štúdium: VŠ, fakulta: </th>
-          <td>AAAA</td>
+          <td>FEI STU</td>
         </tr>
         <tr>
           <th>Stupeň štúdia: </th>
@@ -91,11 +166,11 @@
         </tr>
         <tr class="bb">
           <th>Študijný program: </th>
-          <td>LOL</td>
+          <td>Info3</td>
         </tr>
         <tr>
           <th>Dátum začiatku a konca štúdia: </th>
-          <td>2021-1-1 / 2021-1-1</td>
+          <td>2016-9-10 / 2016-9-10</td>
         </tr>
       </table>
       <table class="half_table akad tb">
@@ -106,19 +181,39 @@
           <th>akad. rok</th>
           <th class="lb">platil/a - neplatil/a</th>
         </tr>
+        <tr class="nb">
+          <td>2016 / 2017</td>
+          <td class="lb">false</td>
+        </tr>
+        <tr class="nb">
+          <td>2017 / 2018</td>
+          <td class="lb">false</td>
+        </tr>
+        <tr class="nb">
+          <td>2018 / 2019</td>
+          <td class="lb">false</td>
+        </tr>
+        <tr class="nb">
+          <td>2019 / 2020</td>
+          <td class="lb">false</td>
+        </tr>
+        <tr class="nb">
+          <td>2020 / 2021</td>
+          <td class="lb">false</td>
+        </tr>
       </table>
       <table class="half_table read_naked_choke tb">
         <tr class="bb">
           <th class="is">Iné štúdium: VŠ, fakulta: </th>
-          <td>DEBIL</td>
+          <td>FIS Brno</td>
         </tr>
         <tr>
           <th>Stupeň štúdia: </th>
-          <td><input type="checkbox" name="other_bachelor" disabled><label for="other_bachelor">bakalársky</label></td>
+          <td><input type="checkbox" name="other_bachelor" disabled checked><label for="other_bachelor">bakalársky</label></td>
         </tr>
         <tr>
           <th></th>
-          <td><input type="checkbox" name="other_master" disabled checked><label for="other_master">inžiniersky/magisterský</label></td>
+          <td><input type="checkbox" name="other_master" disabled><label for="other_master">inžiniersky/magisterský</label></td>
         </tr>
         <tr>
           <th></th>
@@ -138,7 +233,7 @@
         </tr>
         <tr class="bb">
           <th>Študijný program: </th>
-          <td>aHAHAHA</td>
+          <td>Elektronika</td>
         </tr>
         <tr>
           <th>Dátum začiatku a konca štúdia: </th>
@@ -152,6 +247,10 @@
         <tr class="bb">
           <th>akad. rok</th>
           <th class="lb">platil/a - neplatil/a</th>
+        </tr>
+        <tr class="nb">
+          <td>2005 / 2006</td>
+          <td class="lb">true</td>
         </tr>
       </table>
     </div>
