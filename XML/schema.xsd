@@ -23,7 +23,6 @@
                   <xs:sequence>
                     <xs:element name="bachelor" type="xs:boolean"/>
                     <xs:element name="master" type="xs:boolean"/>
-                    <xs:element name="combined" type="xs:boolean"/>
                     <xs:element name="doctoral" type="xs:boolean"/>
                   </xs:sequence>
                 </xs:complexType>
@@ -57,7 +56,7 @@
         </xs:element>
         <xs:element name="studies">
           <xs:complexType>
-            <xs:sequence>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
               <xs:element name="other_study">
                 <xs:complexType>
                   <xs:sequence>
@@ -67,6 +66,7 @@
                         <xs:sequence>
                           <xs:element name="bachelor" type="xs:boolean"/>
                           <xs:element name="master" type="xs:boolean"/>
+                          <xs:element name="combined" type="xs:boolean"/>
                           <xs:element name="doctoral" type="xs:boolean"/>
                         </xs:sequence>
                       </xs:complexType>
@@ -105,7 +105,7 @@
                     </xs:element>
                     <xs:element name="sign_ups">
                       <xs:complexType>
-                        <xs:sequence>
+                        <xs:choice minOccurs="1" maxOccurs="unbounded">
                           <xs:element name="sign_up">
                             <xs:complexType>
                               <xs:sequence>
@@ -121,13 +121,14 @@
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
-                        </xs:sequence>
+                        </xs:choice>
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
+                  <xs:attribute name="study_id" type="xs:integer" use="required" />
                 </xs:complexType>
               </xs:element>
-            </xs:sequence>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
