@@ -23,16 +23,18 @@ namespace SIPVS_backend.Handlers
 
         public string isXMLValid(string xmlPath) {
 
+            XmlSchemaSet schema = new XmlSchemaSet();
+            schema.Add("", "../XML/schema.xsd");
+            XmlReader rd = XmlReader.Create(xmlPath);
+            XDocument doc = XDocument.Load(rd);
             try
             {
-                XmlSchemaSet schema = new XmlSchemaSet();
-                schema.Add("", "../XML/schema.xsd");
-                XmlReader rd = XmlReader.Create(xmlPath);
-                XDocument doc = XDocument.Load(rd);
                 doc.Validate(schema, ValidationEventHandler);
+                rd.Close();
                 return "XML is valid.";
             }
             catch (Exception e) {
+                rd.Close();
                 return e.Message;
             }
         }
@@ -53,7 +55,14 @@ namespace SIPVS_backend.Handlers
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
-                    w.Write(xml.ToString());
+
+                    StringBuilder builder = new StringBuilder(xml.ToString());
+                    builder.Replace("<other_study>", "<other_study study_id='1'>");
+
+                    string y = builder.ToString(); // Value of y is "Hello 1st 2nd world"
+
+
+                    w.Write(y);
                 }
             }
             string localFilePath = Path.GetFullPath("../XML/" + name);
@@ -85,7 +94,7 @@ namespace SIPVS_backend.Handlers
             StringWriter results = new StringWriter();
             transform.Transform(xmlPath, null, results);
 
-            string html_name = "HTML.html";
+            string html_name = "HTML"+RandomString(5)+".html";
             using (FileStream fs = new FileStream("../DATA/" + html_name, FileMode.Create))
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))

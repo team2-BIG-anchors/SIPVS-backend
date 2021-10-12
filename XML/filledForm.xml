@@ -1,17 +1,17 @@
 ﻿<form>
   <title>ČESTNÉ VYHLÁSENIE študenta o štúdiu na vysokých školách</title>
   <student>
-    <name_surname_title>Bc. Juraj Bedej</name_surname_title>
+    <name_surname_title>&lt;buzi&gt;52</name_surname_title>
     <id>5</id>
-    <birth>2014-1-1</birth>
-    <birthplace>Bratislava</birthplace>
-    <address>Pri starej pracharni 2, Bratislava</address>
+    <birth>2018-01-01</birth>
+    <birthplace>llol!!!!!!</birthplace>
+    <address>loser"""''''debel</address>
   </student>
   <study>
-    <faculty>FIIT UISI</faculty>
+    <faculty>Debelko!</faculty>
     <degree>
-      <bachelor>false</bachelor>
-      <master>true</master>
+      <bachelor>true</bachelor>
+      <master>false</master>
       <doctoral>false</doctoral>
     </degree>
     <type>
@@ -25,14 +25,14 @@
         <combined>false</combined>
       </optional>
     </type>
-    <field_of_study>ISS</field_of_study>
+    <field_of_study>TESTICU</field_of_study>
   </study>
   <studies>
-    <other_study>
-      <faculty>FEI STU</faculty>
+    <other_study study_id='1'>
+      <faculty>s</faculty>
       <degree>
-        <bachelor>true</bachelor>
-        <master>false</master>
+        <bachelor>false</bachelor>
+        <master>true</master>
         <combined>false</combined>
         <doctoral>false</doctoral>
       </degree>
@@ -47,78 +47,30 @@
           <combined>false</combined>
         </optional>
       </type>
-      <field_of_study>Info3</field_of_study>
+      <field_of_study>&lt;&gt;&lt;&gt;&lt;&gt;&lt;/&gt;</field_of_study>
       <date>
-        <start>2016-9-10</start>
-        <end>2016-9-10</end>
+        <start>2016-01-01</start>
+        <end>2021-01-01</end>
       </date>
       <sign_ups>
         <sign_up>
           <year>
-            <start>2016</start>
-            <end>2017</end>
+            <start>2021</start>
+            <end>2022</end>
           </year>
-          <paid>false</paid>
-        </sign_up>
-        <sign_up>
-          <year>
-            <start>2017</start>
-            <end>2018</end>
-          </year>
-          <paid>false</paid>
-        </sign_up>
-        <sign_up>
-          <year>
-            <start>2018</start>
-            <end>2019</end>
-          </year>
-          <paid>false</paid>
+          <paid>true</paid>
         </sign_up>
         <sign_up>
           <year>
             <start>2019</start>
             <end>2020</end>
           </year>
-          <paid>false</paid>
+          <paid>true</paid>
         </sign_up>
         <sign_up>
           <year>
-            <start>2020</start>
-            <end>2021</end>
-          </year>
-          <paid>false</paid>
-        </sign_up>
-      </sign_ups>
-    </other_study>
-    <other_study>
-      <faculty>FIS Brno</faculty>
-      <degree>
-        <bachelor>true</bachelor>
-        <master>false</master>
-        <combined>false</combined>
-        <doctoral>false</doctoral>
-      </degree>
-      <type>
-        <main>
-          <daily>false</daily>
-          <external>false</external>
-        </main>
-        <optional>
-          <present>false</present>
-          <distant>false</distant>
-          <combined>false</combined>
-        </optional>
-      </type>
-      <field_of_study>Elektronika</field_of_study>
-      <date>
-        <start>2005-1-1</start>
-        <end>2005-1-1</end>
-      </date>
-      <sign_ups>
-        <sign_up>
-          <year>
-            <start>2005</start>
-            <end>2006</end>
+            <start>2018</start>
+            <end>2019</end>
           </year>
           <paid>true</paid>
         </sign_up>

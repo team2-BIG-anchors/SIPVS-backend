@@ -23,6 +23,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Xsl;
 using Newtonsoft.Json;
+using System.Globalization;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class DisableFormValueModelBindingAttribute : Attribute, IResourceFilter
@@ -53,30 +54,19 @@ namespace SIPVS_backend.Controllers
         [Route("isvalid")]
         [HttpPost]
         [DisableFormValueModelBinding]
-        public async Task<string> isXMLValid(List<IFormFile> files)
+        public string isXMLValid(List<IFormFile> files)
         {
             IFormFile file = files.First();
             string filePath = Path.Combine("../DATA/", file.FileName);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            using (Stream fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
             {
-                await file.CopyToAsync(fileStream);
-                //need to somehow close the file???
-                fileStream.Close();
+                file.CopyTo(fileStream);
+
             }
-
-
-            string newValue = string.Empty;
-            XmlDocument xmlDoc = new XmlDocument();
-
-            xmlDoc.Load(filePath);
-
-            XmlNode node = xmlDoc.SelectSingleNode("Root/Node/Element");
-            node.Attributes[0].Value = newValue;
-
-            xmlDoc.Save(filePath);
 
             XMLHandler handler = new XMLHandler();
             string isValid = handler.isXMLValid(filePath);
+            System.IO.File.Delete(filePath);
             return isValid;
         }
 
@@ -101,15 +91,14 @@ namespace SIPVS_backend.Controllers
 
             IFormFile file = files.First();
             string filePath = Path.Combine("../DATA/", file.FileName);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
-                await file.CopyToAsync(fileStream);
-                //need to somehow close the file???
-                fileStream.Close();
+                file.CopyTo(fileStream);
             }
 
             XMLHandler handler = new XMLHandler();
             FileContentResult stream = handler.createHTML(filePath);
+            System.IO.File.Delete(filePath);
             return stream;
 
 

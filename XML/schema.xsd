@@ -56,7 +56,7 @@
         </xs:element>
         <xs:element name="studies">
           <xs:complexType>
-            <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
               <xs:element name="other_study">
                 <xs:complexType>
                   <xs:sequence>
