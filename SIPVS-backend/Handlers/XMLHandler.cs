@@ -9,6 +9,8 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Xsl;
+using Newtonsoft.Json;
+
 
 namespace SIPVS_backend.Handlers
 {
@@ -44,13 +46,21 @@ namespace SIPVS_backend.Handlers
             }
         }
 
-        public FileContentResult createXML() {
-            string fileName = "formular.xml";
-            string localFilePath = Path.GetFullPath("../XML/" + fileName);
+        public FileContentResult createXML(string jsonString) {
+            XNode xml  = JsonConvert.DeserializeXNode(jsonString, "form");
+            string name = "filledForm.xml" ;
+            using (FileStream fs = new FileStream("../XML/" + name, FileMode.Create))
+            {
+                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    w.Write(xml.ToString());
+                }
+            }
+            string localFilePath = Path.GetFullPath("../XML/" + name);
             var data = System.IO.File.ReadAllBytes(localFilePath);
             var result = new FileContentResult(data, "application/octet-stream")
             {
-                FileDownloadName = "form.xml"
+                FileDownloadName = name
             };
             return result;
         }

@@ -13,9 +13,35 @@ using SIPVS_backend.Handlers;
 using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
 using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using FromBodyAttribute = Microsoft.AspNetCore.Mvc.FromBodyAttribute;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime.Serialization.Json;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Schema;
+using System.Xml.Xsl;
+using Newtonsoft.Json;
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+public class DisableFormValueModelBindingAttribute : Attribute, IResourceFilter
+{
+    public void OnResourceExecuting(ResourceExecutingContext context)
+    {
+        var factories = context.ValueProviderFactories;
+        factories.RemoveType<FormValueProviderFactory>();
+        factories.RemoveType<JQueryFormValueProviderFactory>();
+    }
+
+    public void OnResourceExecuted(ResourceExecutedContext context)
+    {
+    }
+}
 
 namespace SIPVS_backend.Controllers
 {
+    
 
     [Route("api/xml2")]
     [ApiController]
@@ -25,31 +51,33 @@ namespace SIPVS_backend.Controllers
 
         // GET: api/<XMLController>
         [Route("isvalid")]
-        [HttpGet]
+        [HttpPost]
+        [DisableFormValueModelBinding]
         public async Task<string> isXMLValid(List<IFormFile> files)
         {
-
             IFormFile file = files.First();
             string filePath = Path.Combine("../DATA/", file.FileName);
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(fileStream);
+                //need to somehow close the file???
+                fileStream.Close();
             }
             XMLHandler handler = new XMLHandler();
             string isValid = handler.isXMLValid(filePath);
             return isValid;
-                
-            
-
         }
 
+        public class JSONBody {
+            public object json { get; set; }
+        }
 
         [Route("savexml")]
-        [HttpGet]
-        public FileContentResult saveXML()
+        [HttpPost]
+        public FileContentResult saveXML(JSONBody x)
         {
             XMLHandler handler = new XMLHandler();
-            FileContentResult stream = handler.createXML();
+            FileContentResult stream = handler.createXML(x.json.ToString());
             return stream;
         }
 
@@ -64,6 +92,8 @@ namespace SIPVS_backend.Controllers
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(fileStream);
+                //need to somehow close the file???
+                fileStream.Close();
             }
 
             XMLHandler handler = new XMLHandler();

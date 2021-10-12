@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="view.xsl"?>
 
 <form>
   <title></title>
   <student>
     <name_surname_title></name_surname_title>
-    <id>5</id>
-    <birth>2000-01-20</birth>
+    <id></id>
+    <birth></birth>
     <birthplace></birthplace>
     <address></address>
   </student>
   <study>
     <faculty></faculty>
     <degree>
-      <bachelor>true</bachelor>
-      <master>false</master>
-      <doctoral>false</doctoral>
+      <bachelor></bachelor>
+      <master></master>
+      <doctoral></doctoral>
     </degree>
     <type>
       <main>
-        <daily>true</daily>
-        <external>false</external>
+        <daily></daily>
+        <external></external>
       </main>
       <optional>
-        <present>true</present>
-        <distant>false</distant>
-        <combined>false</combined>
+        <present></present>
+        <distant></distant>
+        <combined></combined>
       </optional>
     </type>
     <field_of_study></field_of_study>
@@ -33,31 +34,32 @@
     <other_study>
       <faculty></faculty>
       <degree>
-        <bachelor>1</bachelor>
-        <master>0</master>
-        <doctoral>0</doctoral>
+        <bachelor></bachelor>
+        <master></master>
+        <combined></combined>
+        <doctoral></doctoral>
       </degree>
       <type>
         <main>
-          <daily>1</daily>
-          <external>0</external>
+          <daily></daily>
+          <external></external>
         </main>
         <optional>
-          <present>1</present>
-          <distant>0</distant>
-          <combined>0</combined>
+          <present></present>
+          <distant></distant>
+          <combined></combined>
         </optional>
       </type>
       <field_of_study></field_of_study>
       <date>
-        <start>2010-10-15</start>
-        <end>2015-10-20</end>
+        <start></start>
+        <end></end>
       </date>
       <sign_ups>
         <sign_up>
           <year>
-            <start>2010</start>
-            <end>2015</end>
+            <start></start>
+            <end></end>
           </year>
           <paid></paid>
         </sign_up>
