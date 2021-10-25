@@ -55,13 +55,10 @@ namespace SIPVS_backend.Handlers
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
-
                     StringBuilder builder = new StringBuilder(xml.ToString());
+                    builder.Replace("<form>", "<form xmlns=\"http://smetiari.sk/form/ES/1.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">");
                     builder.Replace("<other_study>", "<other_study study_id='1'>");
-
                     string y = builder.ToString(); // Value of y is "Hello 1st 2nd world"
-
-
                     w.Write(y);
                 }
             }
