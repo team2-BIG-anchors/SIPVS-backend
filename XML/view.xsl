@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:xyz="http://smetiari.sk/form/ES/1.0">
-<xsl:output method="xhtml" indent="yes" omit-xml-declaration="yes"/>
+<!-- <xsl:output method="xhtml" indent="yes" omit-xml-declaration="yes"/> -->
 <xsl:template match="/">
 <html>
   <head>

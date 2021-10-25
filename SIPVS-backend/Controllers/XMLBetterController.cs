@@ -107,7 +107,6 @@ namespace SIPVS_backend.Controllers
         [HttpGet]
         public Dictionary<string, string> getXMLschema()
         {
-
             XMLHandler handler = new XMLHandler();
             Dictionary<string, string> response = handler.getSchema();
             return response;
