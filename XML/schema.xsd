@@ -1,4 +1,4 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://smetiari.sk/form/ES/1.0" xmlns="http://smetiari.sk/form/ES/1.0">
   <xs:element name="form">
     <xs:complexType>
       <xs:sequence>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:xyz="http://smetiari.sk/form/ES/1.0">
+<xsl:output method="xhtml" indent="yes" omit-xml-declaration="yes"/>
 <xsl:template match="/">
 <html>
   <head>
@@ -82,40 +83,40 @@
     </style>
   </head>
   <body>
-    <h1><xsl:value-of select="form/title"/></h1>
+    <h1><xsl:value-of select="xyz:form/xyz:title"/></h1>
     <div class="main">
       <table class="half_table">
         <tr>
           <th>Titul, meno a priezvisko: </th>
-          <td><xsl:value-of select="form/student/name_surname_title"/></td>
+          <td><xsl:value-of select="xyz:form/xyz:student/xyz:name_surname_title"/></td>
         </tr>
         <tr>
           <th>ID: </th>
-          <td><xsl:value-of select="form/student/id"/></td>
+          <td><xsl:value-of select="xyz:form/xyz:student/xyz:id"/></td>
         </tr>
         <tr>
           <th>Dátum narodenia: </th>
-          <td><xsl:value-of select="form/student/birth"/></td>
+          <td><xsl:value-of select="xyz:form/xyz:student/xyz:birth"/></td>
         </tr>
         <tr>
           <th>Miesto narodenia: </th>
-          <td><xsl:value-of select="form/student/birthplace"/></td>
+          <td><xsl:value-of select="xyz:form/xyz:student/xyz:birthplace"/></td>
         </tr>
         <tr>
           <th>Trvalé bydlisko: </th>
-          <td><xsl:value-of select="form/student/address"/></td>
+          <td><xsl:value-of select="xyz:form/xyz:student/xyz:address"/></td>
         </tr>
       </table>
       <table class="half_table">
         <tr>
           <th>Fakulta/ústav: </th>
-          <td><xsl:value-of select="form/study/faculty"/></td>
+          <td><xsl:value-of select="xyz:form/xyz:study/xyz:faculty"/></td>
         </tr>
         <tr>
           <th>Stupeň štúdia: </th>
           <td>
             <xsl:choose>
-              <xsl:when test="form/study/degree/bachelor='true'">
+              <xsl:when test="xyz:form/xyz:study/xyz:degree/xyz:bachelor='true'">
                 <input type="checkbox" name="bachelor" disabled="disabled" checked="true" />
                 <label for="bachelor">bakalársky</label>
               </xsl:when>
@@ -130,7 +131,7 @@
           <th></th>
           <td>
             <xsl:choose>
-              <xsl:when test="form/study/degree/master='true'">
+              <xsl:when test="xyz:form/xyz:study/xyz:degree/xyz:master='true'">
                 <input type="checkbox" name="master" disabled="disabled" checked="true" />
                 <label for="master">inžiniersky/magisterský</label>
               </xsl:when>
@@ -145,7 +146,7 @@
           <th></th>
           <td>
             <xsl:choose>
-              <xsl:when test="form/study/degree/doctoral='true'">
+              <xsl:when test="xyz:form/xyz:study/xyz:degree/xyz:doctoral='true'">
                 <input type="checkbox" name="doctoral" disabled="disabled" checked="true" />
                 <label for="doctoral">doktorandský</label>
               </xsl:when>
@@ -160,7 +161,7 @@
           <th>Forma: </th>
           <td>
             <xsl:choose>
-              <xsl:when test="form/study/type/main/daily='true'">
+              <xsl:when test="xyz:form/xyz:study/xyz:type/xyz:main/xyz:daily='true'">
                 <input type="checkbox" name="daily" disabled="disabled" checked="true" />
                 <label for="daily">denná (</label>
               </xsl:when>
@@ -170,7 +171,7 @@
               </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
-              <xsl:when test="form/study/type/optional/present='true'">
+              <xsl:when test="xyz:form/xyz:study/xyz:type/xyz:optional/xyz:present='true'">
                 <input type="checkbox" name="present" disabled="disabled" checked="true" />
                 <label for="present">prezenčná, </label>
               </xsl:when>
@@ -180,7 +181,7 @@
               </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
-              <xsl:when test="form/study/type/optional/distant='true'">
+              <xsl:when test="xyz:form/xyz:study/xyz:type/xyz:optional/xyz:distant='true'">
                 <input type="checkbox" name="distant" disabled="disabled" checked="true" />
                 <label for="distant">dištančná, </label>
               </xsl:when>
@@ -205,7 +206,7 @@
           <th></th>
           <td>
             <xsl:choose>
-              <xsl:when test="form/study/type/main/external='true'">
+              <xsl:when test="xyz:form/xyz:study/xyz:type/xyz:main/xyz:external='true'">
                 <input type="checkbox" name="external" disabled="disabled" checked="true" />
                 <label for="external">externá</label>
               </xsl:when>
@@ -218,23 +219,23 @@
         </tr>
         <tr>
           <th>Študijný program: </th>
-          <td><xsl:value-of select="form/study/field_of_study"/></td>
+          <td><xsl:value-of select="xyz:form/xyz:study/xyz:field_of_study"/></td>
         </tr>
       </table>
     </div>
 
     <div class="other_studies">
-      <xsl:for-each select="form/studies/other_study">
+      <xsl:for-each select="xyz:form/xyz:studies/xyz:other_study">
         <table class="half_table read_naked_choke tb">
           <tr class="bb">
             <th class="is">Iné štúdium: VŠ, fakulta: </th>
-            <td><xsl:value-of select="faculty"/></td>
+            <td><xsl:value-of select="xyz:faculty"/></td>
           </tr>
           <tr>
             <th>Stupeň štúdia: </th>
             <td>
               <xsl:choose>
-                <xsl:when test="degree/bachelor='true'">
+                <xsl:when test="xyz:degree/xyz:bachelor='true'">
                   <input type="checkbox" name="other_bachelor" disabled="disabled" checked="true" />
                   <label for="other_bachelor">bakalársky</label>
                 </xsl:when>
@@ -249,7 +250,7 @@
             <th></th>
             <td>
               <xsl:choose>
-                <xsl:when test="degree/master='true'">
+                <xsl:when test="xyz:degree/xyz:master='true'">
                   <input type="checkbox" name="other_master" disabled="disabled" checked="true" />
                   <label for="other_master">inžiniersky/magisterský</label>
                 </xsl:when>
@@ -264,7 +265,7 @@
             <th></th>
             <td>
               <xsl:choose>
-                <xsl:when test="degree/combined='true'">
+                <xsl:when test="xyz:degree/xyz:combined='true'">
                   <input type="checkbox" name="other_combined" disabled="disabled" checked="true" />
                   <label for="other_combined">spojený 1. a 2. stupeň</label>
                 </xsl:when>
@@ -279,7 +280,7 @@
             <th></th>
             <td>
               <xsl:choose>
-                <xsl:when test="degree/doctoral='true'">
+                <xsl:when test="xyz:degree/xyz:doctoral='true'">
                   <input type="checkbox" name="other_doctoral" disabled="disabled" checked="true" />
                   <label for="other_doctoral">doktorandský</label>
                 </xsl:when>
@@ -294,7 +295,7 @@
             <th>Forma: </th>
             <td>
               <xsl:choose>
-                <xsl:when test="type/main/daily='true'">
+                <xsl:when test="xyz:type/xyz:main/xyz:daily='true'">
                   <input type="checkbox" name="other_daily" disabled="disabled" checked="true" />
                   <label for="other_daily">denná (</label>
                 </xsl:when>
@@ -304,7 +305,7 @@
                 </xsl:otherwise>
               </xsl:choose>
               <xsl:choose>
-                <xsl:when test="type/optional/present='true'">
+                <xsl:when test="xyz:type/xyz:optional/xyz:present='true'">
                   <input type="checkbox" name="other_present" disabled="disabled" checked="true" />
                   <label for="other_present">prezenčná, </label>
                 </xsl:when>
@@ -314,7 +315,7 @@
                 </xsl:otherwise>
               </xsl:choose>
               <xsl:choose>
-                <xsl:when test="type/optional/distant='true'">
+                <xsl:when test="xyz:type/xyz:optional/xyz:distant='true'">
                   <input type="checkbox" name="other_distant" disabled="disabled" checked="true" />
                   <label for="other_distant">dištančná, </label>
                 </xsl:when>
@@ -324,7 +325,7 @@
                 </xsl:otherwise>
               </xsl:choose>
               <xsl:choose>
-                <xsl:when test="type/optional/combined='true'">
+                <xsl:when test="xyz:type/xyz:optional/xyz:combined='true'">
                   <input type="checkbox" name="other_combined" disabled="disabled" checked="true" />
                   <label for="other_combined">kombinovaná)</label>
                 </xsl:when>
@@ -339,7 +340,7 @@
             <th></th>
             <td>
               <xsl:choose>
-                <xsl:when test="type/main/external='true'">
+                <xsl:when test="xyz:type/xyz:main/xyz:external='true'">
                   <input type="checkbox" name="other_external" disabled="disabled" checked="true" />
                   <label for="other_external">externá</label>
                 </xsl:when>
@@ -352,11 +353,11 @@
           </tr>
           <tr class="bb">
             <th>Študijný program: </th>
-            <td><xsl:value-of select="field_of_study"/></td>
+            <td><xsl:value-of select="xyz:field_of_study"/></td>
           </tr>
           <tr>
             <th>Dátum začiatku a konca štúdia: </th>
-            <td><xsl:value-of select="date/start"/> / <xsl:value-of select="date/end"/></td>
+            <td><xsl:value-of select="xyz:date/xyz:start"/> / <xsl:value-of select="xyz:date/xyz:end"/></td>
           </tr>
         </table>
         <table class="half_table akad tb">
@@ -367,9 +368,9 @@
             <th>akad. rok</th>
             <th class="lb">platil/a - neplatil/a</th>
           </tr>
-          <xsl:for-each select="sign_ups/sign_up">
+          <xsl:for-each select="xyz:sign_ups/xyz:sign_up">
             <tr class="nb">
-              <td><xsl:value-of select="year/start"/> / <xsl:value-of select="year/end"/></td>
+              <td><xsl:value-of select="xyz:year/xyz:start"/> / <xsl:value-of select="xyz:year/xyz:end"/></td>
               <td class="lb"><xsl:value-of select="paid"/></td>
             </tr>
           </xsl:for-each>
