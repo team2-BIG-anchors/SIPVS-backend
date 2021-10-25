@@ -112,5 +112,20 @@ namespace SIPVS_backend.Handlers
             return result;
         }
 
+        public Dictionary<string, string> getSchema()
+        {
+
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            string xsltPath = "../XML/view.xsl";
+            string docXSLT = File.ReadAllText(xsltPath);
+            string xsdPath = "../XML/schema.xsd";
+            string docXSD = File.ReadAllText(xsdPath);
+
+            result["xslt"] = docXSLT;
+            result["xsd"] = docXSD;
+            return result;
+
+        }
     }
 }

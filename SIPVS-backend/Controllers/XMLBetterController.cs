@@ -42,12 +42,12 @@ public class DisableFormValueModelBindingAttribute : Attribute, IResourceFilter
 
 namespace SIPVS_backend.Controllers
 {
-    
+
 
     [Route("api/xml2")]
     [ApiController]
     public class XMLBetterController : ControllerBase
-    
+
     {
 
         // GET: api/<XMLController>
@@ -70,7 +70,8 @@ namespace SIPVS_backend.Controllers
             return isValid;
         }
 
-        public class JSONBody {
+        public class JSONBody
+        {
             public object json { get; set; }
         }
 
@@ -100,9 +101,17 @@ namespace SIPVS_backend.Controllers
             FileContentResult stream = handler.createHTML(filePath);
             System.IO.File.Delete(filePath);
             return stream;
+        }
 
+        [Route("getSchema")]
+        [HttpGet]
+        public Dictionary<string, string> getXMLschema()
+        {
+
+            XMLHandler handler = new XMLHandler();
+            Dictionary<string, string> response = handler.getSchema();
+            return response;
+        }
 
     }
-
-}
 }
