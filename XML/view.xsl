@@ -371,7 +371,10 @@
           <xsl:for-each select="xyz:sign_ups/xyz:sign_up">
             <tr class="nb">
               <td><xsl:value-of select="xyz:year/xyz:start"/> / <xsl:value-of select="xyz:year/xyz:end"/></td>
-              <td class="lb"><xsl:value-of select="paid"/></td>
+              <xsl:choose>
+              <xsl:when test="xyz:paid='true'"> <td class="lb">platil</td></xsl:when>
+              <xsl:otherwise> <td class="lb">neplatil</td></xsl:otherwise>   
+              </xsl:choose>           
             </tr>
           </xsl:for-each>
         </table>
