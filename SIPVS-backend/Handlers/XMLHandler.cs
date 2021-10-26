@@ -24,7 +24,7 @@ namespace SIPVS_backend.Handlers
         public string isXMLValid(string xmlPath) {
 
             XmlSchemaSet schema = new XmlSchemaSet();
-            schema.Add("", "../XML/schema.xsd");
+            schema.Add("http://smetiari.sk/form/ES/1.0", "../XML/schema.xsd");
             XmlReader rd = XmlReader.Create(xmlPath);
             XDocument doc = XDocument.Load(rd);
             try
