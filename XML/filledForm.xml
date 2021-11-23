@@ -1,14 +1,14 @@
 ﻿<form xmlns="http://smetiari.sk/form/ES/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <title>ČESTNÉ VYHLÁSENIE študenta o štúdiu na vysokých školách</title>
   <student>
-    <name_surname_title>Bc. Juraj Bedej</name_surname_title>
-    <id>4</id>
-    <birth>1996-10-23</birth>
-    <birthplace>Bratislava</birthplace>
-    <address>Bratislava, Pri starej pracharni 2</address>
+    <name_surname_title>Bc. John Wick</name_surname_title>
+    <id>69</id>
+    <birth>2009-01-01</birth>
+    <birthplace>Crack</birthplace>
+    <address>Clown Town Kentucky</address>
   </student>
   <study>
-    <faculty>FIIT STU</faculty>
+    <faculty>JohnSton</faculty>
     <degree>
       <bachelor>false</bachelor>
       <master>true</master>
@@ -16,16 +16,65 @@
     </degree>
     <type>
       <main>
-        <daily>false</daily>
-        <external>true</external>
+        <daily>true</daily>
+        <external>false</external>
       </main>
       <optional>
-        <present>true</present>
-        <distant>false</distant>
+        <present>false</present>
+        <distant>true</distant>
         <combined>false</combined>
       </optional>
     </type>
-    <field_of_study>ISS</field_of_study>
+    <field_of_study>Manual Labor</field_of_study>
   </study>
-  <studies />
+  <studies>
+    <other_study study_id='1'>
+      <faculty>FIIT</faculty>
+      <degree>
+        <bachelor>false</bachelor>
+        <master>true</master>
+        <combined>false</combined>
+        <doctoral>false</doctoral>
+      </degree>
+      <type>
+        <main>
+          <daily>false</daily>
+          <external>true</external>
+        </main>
+        <optional>
+          <present>false</present>
+          <distant>false</distant>
+          <combined>false</combined>
+        </optional>
+      </type>
+      <field_of_study>Slavery</field_of_study>
+      <date>
+        <start>2019-01-01</start>
+        <end>2021-01-01</end>
+      </date>
+      <sign_ups>
+        <sign_up>
+          <year>
+            <start>2019</start>
+            <end>2020</end>
+          </year>
+          <paid>false</paid>
+        </sign_up>
+        <sign_up>
+          <year>
+            <start>2020</start>
+            <end>2021</end>
+          </year>
+          <paid>false</paid>
+        </sign_up>
+        <sign_up>
+          <year>
+            <start>2021</start>
+            <end>2022</end>
+          </year>
+          <paid>true</paid>
+        </sign_up>
+      </sign_ups>
+    </other_study>
+  </studies>
 </form>
