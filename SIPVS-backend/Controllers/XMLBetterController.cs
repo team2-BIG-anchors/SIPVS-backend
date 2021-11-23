@@ -84,6 +84,24 @@ namespace SIPVS_backend.Controllers
             return stream;
         }
 
+        [Route("timestamptest")]
+        [HttpGet]
+        public string timestamptest()
+        {
+            XMLHandler handler = new XMLHandler();
+            string result = handler.CallWebService();
+            return result;
+        }
+
+        [Route("timestamp")]
+        [HttpPost]
+        public FileContentResult timestamp(JSONBody x)
+        {
+            XMLHandler handler = new XMLHandler();
+            FileContentResult stream = handler.createXML(x.json.ToString());
+            return stream;
+        }
+
 
         [Route("visualize")]
         [HttpPost]
