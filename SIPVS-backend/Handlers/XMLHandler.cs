@@ -192,7 +192,8 @@ namespace SIPVS_backend.Handlers
             xmlDoc.LoadXml(xml_response);
             string b64response = xmlDoc.GetElementsByTagName("GetTimestampResult")[0].InnerText;
             TimeStampResponse bCastle = new TimeStampResponse(Convert.FromBase64String(b64response));
-            string decodedString = Encoding.UTF8.GetString(bCastle.TimeStampToken.GetEncoded());
+            string decodedString = Convert.ToBase64String(bCastle.GetEncoded());
+            //string decodedString = Encoding.UTF8.GetString(bCastle.GetEncoded());
             // TODO insert new xml element
 
 
@@ -207,6 +208,10 @@ namespace SIPVS_backend.Handlers
 
             root = signed_doc.GetElementsByTagName("xades:UnsignedSignatureProperties")[0];
             elem = signed_doc.CreateElement("xades:SignatureTimeStamp");
+            root.AppendChild(elem);
+
+            root = signed_doc.GetElementsByTagName("xades:SignatureTimeStamp")[0];
+            elem = signed_doc.CreateElement("xades:EncapsulatedTimeStamp");
             elem.InnerText = decodedString;
             root.AppendChild(elem);
 
@@ -223,8 +228,7 @@ namespace SIPVS_backend.Handlers
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
                     string xmlString = System.IO.File.ReadAllText("../DATA/" + xml_signed_timestamp);
-                    string s_new_doc = xmlString.Replace("UnsignedProperties", "xades:UnsignedProperties").Replace("UnsignedSignatureProperties", "xades:UnsignedSignatureProperties").Replace("SignatureTimeStamp", "xades:SignatureTimeStamp");
-                    Console.WriteLine(s_new_doc);
+                    string s_new_doc = xmlString.Replace("UnsignedProperties", "xades:UnsignedProperties").Replace("UnsignedSignatureProperties", "xades:UnsignedSignatureProperties").Replace("SignatureTimeStamp", "xades:SignatureTimeStamp").Replace("EncapsulatedTimeStamp", "xades:EncapsulatedTimeStamp");
                     w.Write(s_new_doc);
                 }
             }
