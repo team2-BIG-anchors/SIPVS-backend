@@ -11,6 +11,14 @@ using System.Xml.Schema;
 using System.Xml.Xsl;
 using Newtonsoft.Json;
 using System.Net;
+// using Bouncy Castle library: http://www.bouncycastle.org/csharp/
+using Org.BouncyCastle.Bcpg;
+using Org.BouncyCastle.Bcpg.OpenPgp;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Security;
+using Org.BouncyCastle.Tsp;
+using Org.BouncyCastle.Asn1.Tsp;
+using Org.BouncyCastle.Asn1;
 
 namespace SIPVS_backend.Handlers
 {
@@ -77,12 +85,12 @@ namespace SIPVS_backend.Handlers
 
 
         #region SAOP KOKOTINA
-        public string CallWebService()
+        public string CallWebService(string b64)
         {
             var _url = "https://test.ditec.sk/timestampws/TS.asmx";
-            var _action = "https://test.ditec.sk/timestampws/TS.asmx?op=GetTimestamp";
-
-            XmlDocument soapEnvelopeXml = CreateSoapEnvelope();
+            //var _action = "https://test.ditec.sk/timestampws/TS.asmx?op=GetTimestamp";
+            var _action = "http://www.ditec.sk/GetTimestamp";
+            XmlDocument soapEnvelopeXml = CreateSoapEnvelope(b64);
             HttpWebRequest webRequest = CreateWebRequest(_url, _action);
             InsertSoapEnvelopeIntoWebRequest(soapEnvelopeXml, webRequest);
 
@@ -95,14 +103,21 @@ namespace SIPVS_backend.Handlers
 
             // get the response from the completed web request.
             string soapResult;
-            using (WebResponse webResponse = webRequest.EndGetResponse(asyncResult))
-            {
-                using (StreamReader rd = new StreamReader(webResponse.GetResponseStream()))
+            try { 
+                using (WebResponse webResponse = webRequest.EndGetResponse(asyncResult))
                 {
-                    soapResult = rd.ReadToEnd();
+                    using (StreamReader rd = new StreamReader(webResponse.GetResponseStream()))
+                    {
+                        soapResult = rd.ReadToEnd();
+                    }
                 }
+                return soapResult;
             }
-            return soapResult;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return "f";
+            }
         }
 
         private static HttpWebRequest CreateWebRequest(string url, string action)
@@ -111,21 +126,22 @@ namespace SIPVS_backend.Handlers
             webRequest.Headers.Add("SOAPAction", action);
             webRequest.ContentType = "text/xml;charset=\"utf-8\"";
             webRequest.Accept = "text/xml";
-            webRequest.Method = "GET";
+            //webRequest.ContentLength = "string".Length;
+            webRequest.Method = "POST";
             return webRequest;
         }
 
-        private static XmlDocument CreateSoapEnvelope()
+        private static XmlDocument CreateSoapEnvelope(string b64)
         {
             XmlDocument soapEnvelopeDocument = new XmlDocument();
             soapEnvelopeDocument.LoadXml(
-            @"<soap:Envelope xmlns: xsi = ""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd = ""http://www.w3.org/2001/XMLSchema"" xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
+            String.Format(@"<soap:Envelope xmlns:xsi = ""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd = ""http://www.w3.org/2001/XMLSchema"" xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
                 <soap:Body>
                     <GetTimestamp xmlns = ""http://www.ditec.sk/"" >
-                        <dataB64>string</dataB64>
+                        <dataB64>{0}</dataB64>
                     </GetTimestamp>
                 </soap:Body>
-            </soap:Envelope>");
+            </soap:Envelope>",b64));
 
             return soapEnvelopeDocument;
         }
@@ -138,46 +154,90 @@ namespace SIPVS_backend.Handlers
             }
         }
         #endregion
-
-        public FileContentResult timestamp(string jsonString)
+        public static Stream GenerateStreamFromString(string s)
         {
-            XNode xml = JsonConvert.DeserializeXNode(jsonString, "form");
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+
+        public string test2()
+        {
+            //string xml_response = CallWebService();
+            //// TODO extract token from response
+            //XmlDocument xmlDoc = new XmlDocument();
+            //xmlDoc.LoadXml(xml_response);
+            //string b64response = xmlDoc.GetElementsByTagName("GetTimestampResult")[0].InnerText;
+            //TimeStampResponse bCastle = new TimeStampResponse(Convert.FromBase64String(b64response));
+            //string decodedString = Encoding.UTF8.GetString(bCastle.TimeStampToken.GetEncoded());
+
+            //Console.WriteLine(decodedString);
+            //return decodedString;
+            return "k";
+        }
+
+        public FileContentResult timestamp(string xmlPath)
+        {
+            XmlDocument signed_doc = new XmlDocument();
+            signed_doc.Load(xmlPath);
+            // TODO extract element z sign xml
+            string signed64 = signed_doc.GetElementsByTagName("ds:SignatureValue")[0].InnerText;
+             // TODO call CallWebService
+            string xml_response = CallWebService(signed64);
+            // TODO extract token from response
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xml_response);
+            string b64response = xmlDoc.GetElementsByTagName("GetTimestampResult")[0].InnerText;
+            TimeStampResponse bCastle = new TimeStampResponse(Convert.FromBase64String(b64response));
+            string decodedString = Encoding.UTF8.GetString(bCastle.TimeStampToken.GetEncoded());
+            // TODO insert new xml element
 
 
-            string name = "filledForm.xml";
+            //signed_doc
+            XmlNode root = signed_doc.GetElementsByTagName("xades:QualifyingProperties")[0];
+            XmlElement elem = signed_doc.CreateElement("xades:UnsignedProperties");
+            root.AppendChild(elem);
+            
+            root = signed_doc.GetElementsByTagName("xades:UnsignedProperties")[0];
+            elem = signed_doc.CreateElement("xades:UnsignedSignatureProperties");
+            root.AppendChild(elem);
 
-            // TODO write/load sign xml / 
-            using (FileStream fs = new FileStream("../XML/" + name, FileMode.Create))
+            root = signed_doc.GetElementsByTagName("xades:UnsignedSignatureProperties")[0];
+            elem = signed_doc.CreateElement("xades:SignatureTimeStamp");
+            elem.InnerText = decodedString;
+            root.AppendChild(elem);
+
+            string xml_signed_timestamp = "XML" + RandomString(5) + ".xml";
+            signed_doc.Save("../DATA/" + xml_signed_timestamp);
+
+            XmlDocument new_doc = new XmlDocument();
+            signed_doc.Load("../DATA/" + xml_signed_timestamp);
+
+            string string_new_path = "../DATA/" + xml_signed_timestamp + "_new";
+
+            using (FileStream fs = new FileStream(string_new_path+".xml", FileMode.Create))
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
-                    StringBuilder builder = new StringBuilder(xml.ToString());
-                    builder.Replace("<form>", "<form xmlns=\"http://smetiari.sk/form/ES/1.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">");
-                    builder.Replace("<other_study>", "<other_study study_id='1'>");
-                    string y = builder.ToString(); // Value of y is "Hello 1st 2nd world"
-                    w.Write(y);
+                    string xmlString = System.IO.File.ReadAllText("../DATA/" + xml_signed_timestamp);
+                    string s_new_doc = xmlString.Replace("UnsignedProperties", "xades:UnsignedProperties").Replace("UnsignedSignatureProperties", "xades:UnsignedSignatureProperties").Replace("SignatureTimeStamp", "xades:SignatureTimeStamp");
+                    Console.WriteLine(s_new_doc);
+                    w.Write(s_new_doc);
                 }
             }
 
-            // TODO extract element z sign xml
 
-            // TODO call CallWebService
-
-            // TODO extract token from response
-
-            // TODO create new BCcrypt with token
-
-            // TODO get new xml element
-
-            // TODO insert new xml element
-
-            // return
-            string localFilePath = Path.GetFullPath("../XML/" + name);
-            var data = System.IO.File.ReadAllBytes(localFilePath);
+            string localFilePath = Path.GetFullPath(string_new_path+".xml");
+            var data = File.ReadAllBytes(localFilePath);
             var result = new FileContentResult(data, "application/octet-stream")
             {
-                FileDownloadName = name
+                FileDownloadName = "signed_timestamp.xml"
             };
+            //System.IO.File.Delete(localFilePath);
+            //File.Delete(string_new_path);
             return result;
         }
 

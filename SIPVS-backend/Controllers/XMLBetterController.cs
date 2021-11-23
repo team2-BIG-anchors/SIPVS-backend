@@ -89,17 +89,25 @@ namespace SIPVS_backend.Controllers
         public string timestamptest()
         {
             XMLHandler handler = new XMLHandler();
-            string result = handler.CallWebService();
+            string result = handler.test2();
             return result;
         }
 
         [Route("timestamp")]
         [HttpPost]
-        public FileContentResult timestamp(JSONBody x)
+        public async Task<FileContentResult> timestamp(List<IFormFile> files)
         {
+            IFormFile file = files.First();
+            string filePath = Path.Combine("../DATA/", file.FileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
             XMLHandler handler = new XMLHandler();
-            FileContentResult stream = handler.createXML(x.json.ToString());
+            FileContentResult stream = handler.timestamp(filePath);
+            System.IO.File.Delete(filePath);
             return stream;
+
         }
 
 
